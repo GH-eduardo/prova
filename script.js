@@ -8,15 +8,14 @@
 
     for(i = 0; i < 27; i++) {
 
-        a = document.createElement("a");
         li = document.createElement("li");    
+        a = document.createElement("a");
 
-        li.textContent = `${response[i].nome}`
-
+        a.textContent = `${response[i].nome}`
         a.href = "./municipios/index.html" + "?" + "nome=" + `${response[i].sigla}`
-        document.querySelector("#lista-de-estados").appendChild(a)
 
-        document.querySelector("#lista-de-estados").lastElementChild.appendChild(li)
+        document.querySelector("#lista-de-estados").appendChild(li)
+        document.querySelector("#lista-de-estados").lastElementChild.appendChild(a)
     }
 
 })();

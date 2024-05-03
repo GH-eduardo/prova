@@ -1,13 +1,26 @@
 body {
-    height: 94vh;
+    margin: 0;
+    height: 100vh;
     width: 98vw;
     display: grid;
-    grid-template-rows: 1fr 4fr 1fr;
+    grid-template-rows: auto 1fr auto;
 }
 
 header {
     background-color: #0074d9;
+    color: #f4f4f4;
+    text-align: center;
+}
 
+header h1 {
+    padding: 12px;
+    margin: auto;
+}
+
+header a {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: #f4f4f4;
 }
 
 button {
@@ -35,4 +48,5 @@ footer {
     color: #f4f4f4;
     text-align: center;
     background-color: #333;
+    padding: 24px;
 }

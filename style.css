@@ -1,19 +1,38 @@
 body {
-    height: 94vh;
+    height: 100vh;
+    margin: 0;
     width: 98vw;
     display: grid;
-    grid-template-rows: 1fr 4fr 1fr;
+    grid-template-rows: auto 4fr auto;
 }
 
 header {
     background-color: #0074d9;
     text-align: center;
+    color: #f4f4f4;
 }
 
-main {}
+header h1 {
+    padding: 12px;
+    margin: auto;
+}
+
+header a {
+    display: block;
+    color: #f4f4f4;
+    margin-bottom: 20px;
+}
+
+main {
+
+}
 
 #lista-de-estados {
     list-style: none;
+}
+
+a {
+    color: #333;
 }
 
 a:hover {
@@ -25,4 +44,5 @@ footer {
     color: #f4f4f4;
     text-align: center;
     background-color: #333;
+    padding: 24px;
 }

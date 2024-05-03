@@ -12,18 +12,18 @@
     let lista = document.querySelector("#lista-de-municipios");
 
     let li = document.createElement("li");
-    // let button = document.createElement("button");
+    let button = document.createElement("button");
 
     for(i = 0; i <= response.length; i++) {
-
+        
         li = document.createElement("li");    
-        // button = document.createElement("button");
-
-        // button.textContent = "Favoritar"
+        button = document.createElement("button");
+        
+        button.textContent = "Favoritar"
         li.textContent = `${response[i].nome}`
 
         document.querySelector("#lista-de-municipios").appendChild(li)
-        // document.querySelector("#lista-de-estados").lastElementChild.appendChild(button)
+        document.querySelector("#lista-de-municipios").lastElementChild.appendChild(button)
     }
 
 })();
