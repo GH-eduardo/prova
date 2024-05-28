@@ -3,8 +3,8 @@
         'https://servicodados.ibge.gov.br/api/v1/localidades/estados'
     ).then(response => response.json());
 
-    let a = document.createElement("a");
-    let li = document.createElement("li");
+    let li;
+    let a;
 
     for(i = 0; i < 27; i++) {
 

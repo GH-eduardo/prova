@@ -1,29 +1,46 @@
-(async () => {
+function adicionarFavorito(municipio) {
+    const favoritos = JSON.parse(localStorage.getItem('favoritos')) || []
+    favoritos.push(municipio)
+    localStorage.setItem('favoritos', JSON.stringify(favoritos))
+}
 
-    let params = new URLSearchParams(document.location.search);
-    let uf = params.get("nome")
+async function carregarMunicipios() {
 
-    const response = await fetch(
-        'https://servicodados.ibge.gov.br/api/v1/localidades/estados/' + uf + '/municipios'
-    ).then(response => response.json());
+    try {
+        let params = new URLSearchParams(document.location.search);
+        let uf = params.get("nome")
 
-    document.querySelector("#titulo").textContent = "Municípios de " + uf
+        const response = await fetch(
+            'https://servicodados.ibge.gov.br/api/v1/localidades/estados/' + uf + '/municipios'
+        ).then(response => response.json());
 
-    let lista = document.querySelector("#lista-de-municipios");
+        document.querySelector("#titulo").textContent = "Municípios de " + uf
 
-    let li = document.createElement("li");
-    let button = document.createElement("button");
+        let lista = document.querySelector("#lista-de-municipios");
 
-    for(i = 0; i <= response.length; i++) {
-        
-        li = document.createElement("li");    
-        button = document.createElement("button");
-        
-        button.textContent = "Favoritar"
-        li.textContent = `${response[i].nome}`
+        let li;
+        let button;
 
-        document.querySelector("#lista-de-municipios").appendChild(li)
-        document.querySelector("#lista-de-municipios").lastElementChild.appendChild(button)
+        response.forEach((municipio) => {
+
+            li = document.createElement("li");
+            li.textContent = municipio.nome
+            button = document.createElement("button");
+            button.textContent = "Favoritar"
+
+            button.classList.add('favorito-button')
+            button.addEventListener('click', () => {
+                adicionarFavorito(municipio.nome + ', ' + uf)
+            })
+
+            lista.appendChild(li)
+            lista.lastElementChild.appendChild(button)
+        })
+    } catch (error) {
+        console.error('Erro ao carregar municípios:', error)
     }
+}
 
-})();
+document.addEventListener('DOMContentLoaded', () => {
+    carregarMunicipios()
+})
