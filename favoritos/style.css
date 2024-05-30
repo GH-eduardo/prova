@@ -5,6 +5,7 @@ body {
     display: grid;
     grid-template-rows: auto 1fr auto;
     font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
 }
 
 header {
@@ -20,8 +21,10 @@ header h1 {
 
 header a {
     display: inline-block;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     color: #f4f4f4;
+    text-decoration: none;
+    margin-right: 15px;
 }
 
 ul {
@@ -45,8 +48,7 @@ button:hover {
 }
 
 a:hover {
-    opacity: 0.8;
-    transition: opacity 0.7s;
+    font-weight: bold;
 }
 
 footer {
