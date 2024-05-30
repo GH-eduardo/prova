@@ -22,7 +22,7 @@
         a = document.createElement("a");
 
         a.textContent = `${response[i].nome}`
-        a.href = "./municipios/index.html" + "?" + "nome=" + `${response[i].sigla}`
+        a.href = "./municipios/index.html" + "?" + "nome=" + `${response[i].sigla}` + "&estado=" + `${response[i].nome}`
 
         document.querySelector("#lista-de-estados").appendChild(li)
         document.querySelector("#lista-de-estados").lastElementChild.appendChild(a)

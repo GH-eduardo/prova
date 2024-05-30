@@ -26,12 +26,25 @@ async function carregarMunicipios() {
     try {
         let params = new URLSearchParams(document.location.search);
         let uf = params.get("nome")
+        let estado = params.get("estado")
 
         const response = await fetch(
             'https://servicodados.ibge.gov.br/api/v1/localidades/estados/' + uf + '/municipios'
         ).then(response => response.json());
 
-        document.querySelector("#titulo").textContent = "Municípios de " + uf
+        if (uf == 'GO' || uf == 'MG' || uf == 'RO' || uf == 'RR' || uf == 'SC' || uf == 'SE' || uf == 'SP' || uf == 'TO') {
+            doDeDa = "de "
+        }
+        else if (uf == 'BA' || uf == 'PB') {
+            doDeDa = "da "
+        }
+        else {
+            doDeDa = "do "
+        }
+
+        document.title = "Municípios " + doDeDa + uf
+
+        document.querySelector("#titulo").textContent = "Municípios " + doDeDa + estado
 
         let lista = document.querySelector("#lista-de-municipios");
 
