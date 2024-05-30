@@ -3,6 +3,16 @@
         'https://servicodados.ibge.gov.br/api/v1/localidades/estados'
     ).then(response => response.json());
 
+    estados = response.sort((a, b) => {
+        if (a.nome < b.nome) {
+            return -1;
+        }
+        if (a.nome > b.nome) {
+            return 1;
+        }
+        return 0;
+    })
+
     let li;
     let a;
 
