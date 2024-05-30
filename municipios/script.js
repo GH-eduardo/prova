@@ -1,7 +1,24 @@
-function adicionarFavorito(municipio) {
+function removerFavorito(municipio) {
     const favoritos = JSON.parse(localStorage.getItem('favoritos')) || []
-    favoritos.push(municipio)
-    localStorage.setItem('favoritos', JSON.stringify(favoritos))
+    const index = favoritos.indexOf(municipio)
+    if (index >= 0) {
+        favoritos.splice(index, 1)
+        localStorage.setItem('favoritos', JSON.stringify(favoritos))
+    }
+}
+
+function adicionarOuRemoverFavorito(municipio, imgId) {
+    console.log(imgId)
+    const favoritos = JSON.parse(localStorage.getItem('favoritos')) || []
+    if (favoritos.includes(municipio)) {
+        removerFavorito(municipio)
+        document.getElementById(imgId).src = "./estrelinha.png"
+    }
+    else {
+        favoritos.push(municipio)
+        localStorage.setItem('favoritos', JSON.stringify(favoritos))
+        document.getElementById(imgId).src = "./estrelinha-amarela.png"
+    }
 }
 
 async function carregarMunicipios() {
@@ -19,22 +36,30 @@ async function carregarMunicipios() {
         let lista = document.querySelector("#lista-de-municipios");
 
         let li;
-        let button;
+        let img;
 
         response.forEach((municipio) => {
 
             li = document.createElement("li");
             li.textContent = municipio.nome
-            button = document.createElement("button");
-            button.textContent = "Favoritar"
-
-            button.classList.add('favorito-button')
-            button.addEventListener('click', () => {
-                adicionarFavorito(municipio.nome + ', ' + uf)
+            img = document.createElement("img");
+            const favoritos = JSON.parse(localStorage.getItem('favoritos')) || []
+            if (favoritos.includes(municipio.nome + ', ' + uf)) {
+                img.src = "./estrelinha-amarela.png"
+            }
+            else {
+                img.src = "./estrelinha.png" 
+            }
+            img.alt = "Favoritar"
+            img.title = "Favoritar"
+            img.classList.add('favorito-button')
+            img.id = municipio.nome + ', ' + uf
+            let id = img.id
+            img.addEventListener('click', () => {
+                adicionarOuRemoverFavorito(municipio.nome + ', ' + uf, id)
             })
-
             lista.appendChild(li)
-            lista.lastElementChild.appendChild(button)
+            lista.lastElementChild.appendChild(img)
         })
     } catch (error) {
         console.error('Erro ao carregar municípios:', error)

@@ -16,12 +16,14 @@ function carregarFavoritos() {
     let li;
     let button;
 
+    favoritos.sort()
+
     favoritos.forEach((municipio) => {
         li = document.createElement('li')
         li.textContent = municipio
 
         button = document.createElement("button");
-        button.textContent = "Remover dos Favoritos"
+        button.textContent = "Remover"
         button.classList.add('remover-button')
 
         button.addEventListener('click', () => {
