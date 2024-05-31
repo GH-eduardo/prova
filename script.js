@@ -28,4 +28,14 @@
         document.querySelector("#lista-de-estados").lastElementChild.appendChild(a)
     }
 
+    let tabela = document.querySelector("#tabela")
+    tabela.style = "border: 1px solid black; padding: 5px;"
+    let red = 255;
+    let green = 0;
+
+    setInterval(() => {
+        tabela.style.backgroundColor = `rgb(${red}, ${green}, 0)`;
+        red = red === 255 ? 0 : 255;
+        green = green === 255 ? 0 : 255;
+    }, 300);
 })();
