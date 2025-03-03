@@ -58,6 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
             align-items: center;
         }
         #formulario input {
+            width: 24vw;
             margin: 10px;
             padding: 10px;
             font-size: 18px;
@@ -83,8 +84,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const formulario = document.createElement('form');
     formulario.id = 'formulario';
     formulario.innerHTML = `
-        <input type="text" id="jogadorA" placeholder="Nome do jogador A">
-        <input type="text" id="jogadorB" placeholder="Nome do jogador B">
+        <input type="text" id="jogadorA" placeholder="Nome do jogador A (jogue com 'W' e 'S')">
+        <input type="text" id="jogadorB" placeholder="Nome do jogador B (jogue com seta para cima e para baixo)">
         <button type="submit">Iniciar Jogo</button>
     `;
     app.appendChild(formulario);
